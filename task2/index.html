@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taskboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <h1><span id="left">0</span> <span id="leftLabel">tasks to do</span></h1>
+  <p class="date" id="date"></p>
+
+  <form class="add" id="addForm" autocomplete="off">
+    <input type="text" id="text" placeholder="What needs doing?" maxlength="200" aria-label="New task">
+    <select class="field" id="cat" aria-label="Category">
+      <option>Work</option><option>Personal</option><option>Study</option>
+    </select>
+    <input class="field" type="date" id="due" aria-label="Due date">
+    <button class="primary" type="submit">Add task</button>
+  </form>
+
+  <div class="bar">
+    <div class="seg" id="seg">
+      <button type="button" data-f="all" aria-pressed="true">All<b id="nAll">0</b></button>
+      <button type="button" data-f="active" aria-pressed="false">Active<b id="nActive">0</b></button>
+      <button type="button" data-f="completed" aria-pressed="false">Completed<b id="nDone">0</b></button>
+    </div>
+    <select class="field" id="catFilter" aria-label="Filter by category">
+      <option value="all">All categories</option><option>Work</option><option>Personal</option><option>Study</option>
+    </select>
+    <input class="field" type="search" id="q" placeholder="Search tasks" aria-label="Search tasks">
+  </div>
+
+  <ul id="list"></ul>
+
+  <div class="foot">
+    <span>Drag a task to reorder it.</span>
+    <button type="button" id="clear">Clear completed</button>
+  </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
