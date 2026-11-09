@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+       header {
+            background-color: #f15d5d;
+            background-size: cover;
+            background-position: center;
+            color: #3b1f1f;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        header h1 {
+            margin: 0;
+        }
+        #logo {
+            position: absolute;
+            top: 28px;
+            left: 30px;
+            margin: 0;
+            color: #4d0303;
+            font-size: 2.2em;
+        }
+        header a {
+            display: inline-block;
+            background-color: #ffdab9;
+            color: #333;
+            margin: 6px;
+            padding: 8px 16px;
+            min-width: 120px;
+            text-align: center;
+            font-weight: bold;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        header a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        header img {
+            display: block;
+            margin: 10px auto;
+            border: 4px solid #fff;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        }
+        section {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #333;
+            color: white;
+        }
+        img {
+            border-radius: 50%;
+            margin-top: 10px;
+            align-self: center;
+        }
+        #about, #projects, #skills{
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #fff;
+            padding: 20px;
+        }
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+            color: #97ebef;
+        }
+        h2 {
+            color: #315e20;
+        }
+        .contact {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: center;
+        }
+        .contact h2.big {
+        font-size: clamp(36px, 5vw, 56px);
+        line-height: 1;
+        margin: 0 0 18px;
+        }
+        .contact p { color: #9a9aa0; font-size: 14px; line-height: 1.6; max-width: 380px; }
+        .contact-list { display: grid; gap: 14px; }
+        .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        border-bottom: 1px solid #2a2a2e;
+        padding-bottom: 14px;
+        font-size: 14px;
+        color: inherit;
+        text-decoration: none;
+        }
+        .contact-item .ic {
+        width: 36px; height: 36px;
+        border: 1px solid #e10600;
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: #e10600;
+        font-size: 14px;
+        flex-shrink: 0;
+        }
+        .avail {
+        display: inline-block;
+        margin-top: 24px;
+        color: #e10600;
+        font-size: 12px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        font-weight: bold;
+        }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+        .project-card {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-left: 6px solid #ef9797;
+            border-radius: 8px;
+            padding: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+        }
+        .project-card h3 {
+            margin-top: 0;
+            color: #3b1f1f;
+        }
+        .project-card .tools {
+            font-size: 0.85em;
+            color: #888;
+            font-weight: bold;
+        }
+        .project-card a {
+            display: inline-block;
+            margin-top: 8px;
+            background-color: #ffdab9;
+            color: #333;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        #skills h3 {
+        color: #3b1f1f;
+        font-size: 1.05em;
+        margin: 18px 0 8px;
+        padding-bottom: 4px;
+        border-bottom: 2px solid #ef9797;
+        }
+        #skills h3:first-of-type {
+            margin-top: 0;
+        }
+        #skills ul {
+            list-style: none;
+            padding-left: 0;
+            margin: 0 0 10px;
+        }
+        #skills li {
+            padding: 6px 0 6px 22px;
+            position: relative;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        #skills li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #ef9797;
+        }
+        #skills li:last-child {
+            border-bottom: none;
+        }
+        .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+        }
+        .cert-card {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-left: 6px solid #ef9797;
+            border-radius: 8px;
+            padding: 14px 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cert-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+        }
+        #skills .cert-card h3 {
+            margin: 0 0 4px;
+            padding: 0;
+            border-bottom: none;
+            color: #3b1f1f;
+            font-size: 1em;
+        }
+        .cert-meta {
+            font-size: 0.85em;
+            color: #888;
+            font-weight: bold;
+            margin: 0 0 8px;
+        }
+        .cert-card p {
+            margin: 0;
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        /* ===== ADDED: theme toggle, hamburger menu, project modal ===== */
+        .theme-toggle, .menu-toggle, .details-btn {
+            background-color: #ffdab9; color: #333; border: none; font-weight: bold;
+            border-radius: 6px; cursor: pointer; font-family: inherit; font-size: 1em;
+        }
+        .theme-toggle { position: absolute; top: 24px; right: 30px; padding: 8px 12px; }
+        .menu-toggle { display: none; margin: 10px auto; padding: 8px 16px; }
+        .details-btn { margin-top: 8px; padding: 6px 12px; }
+        .modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: flex;
+            align-items: center; justify-content: center; padding: 20px; z-index: 2000; }
+        .modal[hidden] { display: none; }
+        .modal-box { position: relative; background: #fff; color: #222; border-left: 6px solid #ef9797;
+            border-radius: 8px; padding: 24px; max-width: 480px; width: 100%; max-height: 85vh; overflow-y: auto; }
+        .modal-box h3 { margin-top: 0; color: #3b1f1f; }
+        .modal-box p { white-space: pre-line; line-height: 1.5; }
+        .modal-box .tools { font-size: 0.85em; color: #888; font-weight: bold; }
+        .modal-box a { display: inline-block; margin: 8px 6px 0 0; background-color: #ffdab9; color: #333;
+            padding: 6px 12px; border-radius: 6px; text-decoration: none; font-weight: bold; }
+        .modal-close { position: absolute; top: 8px; right: 12px; background: none; border: none;
+            font-size: 1.8em; cursor: pointer; color: inherit; }
+
+        /* Phones only: desktop looks exactly like your original */
+        @media (max-width: 700px) {
+            #logo { position: static; margin-bottom: 6px; }
+            .theme-toggle { top: 14px; right: 14px; }
+            .menu-toggle { display: block; }
+            header > a { display: none; }
+            header.menu-open > a { display: block; width: 80%; margin: 6px auto; }
+            .contact { grid-template-columns: 1fr; gap: 24px; }
+        }
+
+        /* Dark theme (header and footer keep their colors) */
+        [data-theme="dark"] body { background-color: #18181b; color: #e8e8e8; }
+        [data-theme="dark"] section,
+        [data-theme="dark"] #about, [data-theme="dark"] #projects, [data-theme="dark"] #skills {
+            background-color: #25252a; border-color: #3a3a40; color: #e8e8e8; }
+        [data-theme="dark"] .project-card, [data-theme="dark"] .cert-card {
+            background-color: #2e2e34; border-color: #444; border-left-color: #ef9797; }
+        [data-theme="dark"] h2 { color: #8fd16f; }
+        [data-theme="dark"] .project-card h3, [data-theme="dark"] #skills h3,
+        [data-theme="dark"] #skills .cert-card h3 { color: #ffb3b3; }
+        [data-theme="dark"] #skills li { border-bottom-color: #3a3a40; }
+        [data-theme="dark"] .contact-item { border-bottom-color: #3a3a40; }
+        [data-theme="dark"] #cursor-glow { mix-blend-mode: screen; opacity: 0.5; }
+        [data-theme="dark"] .modal-box { background: #2e2e34; color: #e8e8e8; }
+        [data-theme="dark"] .modal-box h3 { color: #ffb3b3; }
+        /* ===== ADDED: cursor glow + scroll fade ===== */
+        #cursor-aura {
+            position: fixed; top: 0; left: 0;
+            width: 420px; height: 420px; margin: -210px 0 0 -210px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1500;
+            opacity: 0;
+            transition: opacity 0.4s;
+            mix-blend-mode: multiply;
+            background: radial-gradient(circle at center,
+                rgba(241, 93, 93, 0.45) 0%,
+                rgba(255, 170, 120, 0.28) 38%,
+                rgba(255, 218, 185, 0.12) 60%,
+                rgba(255, 218, 185, 0) 72%);
+            will-change: transform;
+        }
+        #cursor-aura.on { opacity: 1; }
+        [data-theme="dark"] #cursor-aura {
+            mix-blend-mode: screen;
+            background: radial-gradient(circle at center,
+                rgba(241, 93, 93, 0.35) 0%,
+                rgba(255, 140, 110, 0.18) 38%,
+                rgba(255, 140, 110, 0.07) 60%,
+                rgba(255, 140, 110, 0) 72%);
+        }
+        @media (hover: none), (prefers-reduced-motion: reduce) {
+            #cursor-aura { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <script src="portfolio.js"></script>
+    <header>
+        <h1 id="logo">HG</h1>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark theme">🌙</button>
+        <h1>Welcome to My Portfolio</h1>
+        <h3>Hello! My name is Hanine</h3>
+        <img src="profile.png" alt="Profile Picture" width="150">
+        <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false">☰ Menu</button>
+        <a href="#about">About me</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+    </header>
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am a passionate IT student at ISETN and an aspiring software developer. I enjoy building responsive websites with HTML, CSS, and JavaScript, and I'm currently learning Python and C. I love learning new technologies and improving my skills, and I'm looking for a summer internship where I can grow as a developer.</p>
+    </section>
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <div class="project-card">
+                <h3>Drummies & Pixel Art Maker</h3>
+                <p>✨A bigger drum kit that runs in your browser: 12 drum pads plus a 16-step beat sequencer. All sounds are generated with the Web Audio API, so no audio files are needed.
+                ✨Draw 16×16 pixel art in your browser and save it as a PNG.
+                </p>
+                <p class="tools">HTML, CSS, JavaScript</p>
+                <a href="https://github.com/Hanine-Ghabri/pixel-art-maker" target="_blank">View first code</a>
+                <a href="https://github.com/Hanine-Ghabri/Drummies" target="_blank">View second code</a>
+                <button class="details-btn" type="button">Details</button>
+            </div>
+            <div class="project-card">
+                <h3>Budget App</h3>
+                <p>✨A Category class that tracks deposits, withdrawals and transfers, plus create_spend_chart which draws a text bar chart of spending percentages.</p>
+                <p class="tools">Python</p>
+                <a href="https://github.com/Hanine-Ghabri/Budget-App" target="_blank">View code</a>
+                <button class="details-btn" type="button">Details</button>
+            </div>
+            <div class="project-card">
+                <h3>Exuse Generator</h3>
+                <p>✨Random, ridiculous excuses for any situation. Over 18,000 possible combinations.</p>
+                <p class="tools">HTML,CSS,JavaJcript</p>
+                <a href="https://github.com/Hanine-Ghabri/Excuse-Generator" target="_blank">View code</a>
+                <button class="details-btn" type="button">Details</button>
+            </div>
+        </div>
+    </section>
+    <section id="skills">
+        <h2>Skills</h2>
+        <h3>Programming</h3>
+        <ul>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Python</li>
+            <li>C</li>
+        </ul>
+        <h3>Languages</h3>
+        <ul>
+            <li>English (C2)</li>
+            <li>French (B2)</li>
+            <li>Italian (B1)</li>
+        </ul>
+        <h3>Other</h3>
+        <ul>
+            <li>Teaching English as a foreign language</li>
+        </ul>
+        <h3>Certifications</h3>
+        <div class="cert-grid">
+            <div class="cert-card">
+                <h3>Web Development</h3>
+                <p class="cert-meta">Sololearn · September 10, 2026</p>
+                <p>How websites are structured and built, bringing HTML, CSS, and JavaScript together into complete web pages.</p>
+            </div>
+            <div class="cert-card">
+                <h3>Introduction to HTML</h3>
+                <p class="cert-meta">Sololearn · September 7, 2026</p>
+                <p>Page structure and the core elements: headings, paragraphs, links, images, lists, and forms.</p>
+            </div>
+            <div class="cert-card">
+                <h3>Introduction to CSS</h3>
+                <p class="cert-meta">Sololearn · September 17, 2026</p>
+                <p>Styling pages with colors, fonts, spacing, and layout.</p>
+            </div>
+            <div class="cert-card">
+                <h3>Coding Foundations</h3>
+                <p class="cert-meta">Sololearn · September 16, 2026</p>
+                <p>The core ideas behind programming: variables, logic, loops, and step-by-step problem solving.</p>
+            </div>
+            <div class="cert-card">
+                <h3>C Intermediate</h3>
+                <p class="cert-meta">Sololearn · September 24, 2026</p>
+                <p>Building on the C basics with more advanced programming concepts, including functions and pointers.</p>
+            </div>
+            <div class="cert-card">
+                <h3>C# Intermediate</h3>
+                <p class="cert-meta">Sololearn · September 14, 2026</p>
+                <p>Intermediate C# programming, including object-oriented ideas such as classes and methods.</p>
+            </div>
+            <div class="cert-card">
+                <h3>Angular</h3>
+                <p class="cert-meta">Sololearn (developed with the Angular Team at Google) · September 16, 2026</p>
+                <p>Building component-based web applications with Angular.</p>
+            </div>
+            <div class="cert-card">
+                <h3>SQL Intermediate</h3>
+                <p class="cert-meta">Sololearn · October 2, 2026</p>
+                <p>Writing queries to retrieve, filter, and combine data stored in relational databases.</p>
+            </div>
+            <div class="cert-card">
+                <h3>JavaScript Developer Certification</h3>
+                <p class="cert-meta">freeCodeCamp · October 9, 2026 · about 300 hours of work</p>
+                <p>JavaScript fundamentals, DOM manipulation, working with APIs, and building interactive projects.</p>
+            </div>
+            <div class="cert-card">
+                <h3>Cybersecurity Defense Analyst Career Path</h3>
+                <p class="cert-meta">Cisco Networking Academy · October 7, 2026</p>
+                <p>Cybersecurity goals (confidentiality, integrity, availability), MITRE ATT&amp;CK, the analyst role in a Security Operations Center, Splunk searches, incident triage, and threat hunting.</p>
+            </div>
+            <div class="cert-card">
+                <h3>Security and Connectivity Support</h3>
+                <p class="cert-meta">Cisco Networking Academy · October 7, 2026</p>
+                <p>Supporting network connectivity while keeping networks and devices secure.</p>
+            </div>
+            <div class="cert-card">
+                <h3>Getting Started with Generative AI</h3>
+                <p class="cert-meta">IBM SkillsBuild · October 7, 2026</p>
+                <p>The basics of generative AI and how these tools are used in practice.</p>
+            </div>
+            <div class="cert-card">
+                <h3>AI for Beginners</h3>
+                <p class="cert-meta">HP LIFE · October 6, 2026</p>
+                <p>Key AI concepts, why data matters to AI, how businesses use it, and its ethical implications.</p>
+            </div>
+            <div class="cert-card">
+                <h3>English C2 Proficient</h3>
+                <p class="cert-meta">EF SET · September 14, 2026 · score 80/100</p>
+                <p>C2 level English, the highest level on the Common European Framework of Reference. Reading scored 99/100.</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+    <div class="contact">
+        <div>
+        <h2 class="big">LET'S WORK<br>TOGETHER</h2>
+        <p>I'm open to internship opportunities this summer. Let's build something great together.</p>
+        <span class="avail">● Available for internship</span>
+        </div>
+        <div class="contact-list">
+        <a class="contact-item" href="mailto:hanineghabri@gmail.com"><span class="ic">@</span>hanineghabri@gmail.com</a>
+        <a class="contact-item" href="tel:+21650370969"><span class="ic">☎</span>+216 50 370 969</a>
+        <a class="contact-item" href="https://www.linkedin.com/in/hanine-ghabri-123456789/"><span class="ic">in</span>linkedin.com/in/hanine-ghabri</a>
+        <div class="contact-item"><span class="ic">⌖</span>Nabeul, Tunisia</div>
+        </div>
+    </div>
+</section>
+    </section>
+    <footer>
+        <p>&copy; 2026 Hanine. All rights reserved.</p>
+    </footer>
+
+    <div class="modal" id="projectModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+        <div class="modal-box">
+            <button class="modal-close" id="modalClose" type="button" aria-label="Close">&times;</button>
+            <h3 id="modalTitle"></h3>
+            <p id="modalDesc"></p>
+            <p class="tools" id="modalTools"></p>
+            <div id="modalLinks"></div>
+        </div>
+    </div>
+    <script>
+    /* ===== ADDED: cursor glow + scroll fade ===== */
+    (function () {
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+        /* Colored glow that follows the cursor */
+        if (fine && !reduce) {
+            var aura = document.createElement('div');
+            aura.id = 'cursor-aura';
+            aura.setAttribute('aria-hidden', 'true');
+            document.body.appendChild(aura);
+            var tx = 0, ty = 0, x = 0, y = 0, running = false;
+            function follow() {
+                x += (tx - x) * 0.15;
+                y += (ty - y) * 0.15;
+                aura.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+                if (Math.abs(tx - x) > 0.1 || Math.abs(ty - y) > 0.1) {
+                    requestAnimationFrame(follow);
+                } else {
+                    running = false;
+                }
+            }
+            window.addEventListener('mousemove', function (e) {
+                tx = e.clientX; ty = e.clientY;
+                if (!aura.classList.contains('on')) { x = tx; y = ty; aura.classList.add('on'); }
+                if (!running) { running = true; requestAnimationFrame(follow); }
+            });
+            document.documentElement.addEventListener('mouseleave', function () {
+                aura.classList.remove('on');
+            });
+        }
+
+        /* Things fade out and drift up as they leave the top of the screen */
+        if (!reduce) {
+            var items = document.querySelectorAll(
+                'header > h1:not(#logo), header > h3, header > img, section h2, section > p,' +
+                ' .project-card, .cert-card, #skills > h3, #skills li, .contact p, .contact-item, .avail'
+            );
+            var ZONE = 160, ticking = false;
+            function fade() {
+                ticking = false;
+                var vals = [];
+                for (var i = 0; i < items.length; i++) {
+                    var p = items[i].getBoundingClientRect().bottom / ZONE;
+                    vals.push(p < 0 ? 0 : p > 1 ? 1 : p);
+                }
+                for (var j = 0; j < items.length; j++) {
+                    var v = vals[j];
+                    items[j].style.opacity = v < 1 ? v : '';
+                    items[j].style.translate = v < 1 ? '0 ' + (-(1 - v) * 24) + 'px' : '';
+                }
+            }
+            window.addEventListener('scroll', function () {
+                if (!ticking) { ticking = true; requestAnimationFrame(fade); }
+            }, { passive: true });
+            window.addEventListener('resize', fade);
+            fade();
+        }
+    })();
+    </script>
+</body>
+</html>
